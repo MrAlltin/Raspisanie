@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import ru.mydomain.raspisanieusatu.adapter.TabsFragmentAdapter;
 
@@ -85,10 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.actionNotificationItem:
                         showNatificationTab();
                         break;
-                    case R.id.changetheme:
-                        changetheme();
 
-                        break;
                 }
 
                 return true;
@@ -97,16 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void changetheme() {
-        if (Theme == "Default"){
-        setTheme(R.style.AppRed);
-            Toast.makeText( getApplicationContext(),"2",Toast.LENGTH_LONG).show();
-        Theme = "Red";}
-        if (Theme == "Red"){
-            setTheme( R.style.AppDefault );
-        }
-
-    }
 
     private void showNatificationTab(){
         viewPager.setCurrentItem(Constants.TAB_TWO);

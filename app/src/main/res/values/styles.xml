@@ -7,10 +7,4 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorControlNormal">@color/colorWhite</item>
     </style>
-
-    <style name="AppRed" parent="AppTheme">
-        <item name="colorPrimary">@color/colorPrimaryRed</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkRed</item>
-        <item name="colorControlNormal">@color/colorWhite</item>
-    </style>
 </resources>
