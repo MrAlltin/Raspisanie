@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import ru.mydomain.raspisanieusatu.adapter.TabsFragmentAdapter;
 
@@ -18,22 +19,27 @@ import ru.mydomain.raspisanieusatu.adapter.TabsFragmentAdapter;
 public class MainActivity extends AppCompatActivity {
     private static final int LAYOUT = R.layout.activity_main;
 
+    private String Theme;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
 
+    String FileText;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppDefault);
+        Theme = "Default";
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
+
 
         initToolbar();
         initNavigatonView();
         initTabs();
-
-
 
     }
 
@@ -78,11 +84,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.actionNotificationItem:
                         showNatificationTab();
+                        break;
+                    case R.id.changetheme:
+                        changetheme();
+
+                        break;
                 }
 
                 return true;
             }
         });
+
+    }
+
+    private void changetheme() {
+        if (Theme == "Default"){
+        setTheme(R.style.AppRed);
+            Toast.makeText( getApplicationContext(),"2",Toast.LENGTH_LONG).show();
+        Theme = "Red";}
+        if (Theme == "Red"){
+            setTheme( R.style.AppDefault );
+        }
 
     }
 

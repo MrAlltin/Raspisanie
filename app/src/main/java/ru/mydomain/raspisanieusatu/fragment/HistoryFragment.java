@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.mydomain.raspisanieusatu.FilesOpen.Open_Files;
 import ru.mydomain.raspisanieusatu.R;
 import ru.mydomain.raspisanieusatu.adapter.RemindListAdapter;
 import ru.mydomain.raspisanieusatu.dto.RemindDTO;
@@ -20,6 +21,13 @@ import ru.mydomain.raspisanieusatu.dto.RemindDTO;
 public class HistoryFragment extends AbstractTabFragment{
 
     private static final int LAYOUT = R.layout.fragment_history;
+
+    private int t;
+    private String FileText;
+    boolean wtf = true;
+
+
+
 
 
     public static HistoryFragment getInstanse(Context context){
@@ -36,7 +44,6 @@ public class HistoryFragment extends AbstractTabFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(LAYOUT,container,false);
-
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.recycleView);
         rv.setLayoutManager(new LinearLayoutManager(context));
         rv.setAdapter(new RemindListAdapter(creatMockRemindListData()));
@@ -46,13 +53,25 @@ public class HistoryFragment extends AbstractTabFragment{
     }
 
     private List<RemindDTO> creatMockRemindListData() {
+        Open_Files opn = new Open_Files();
+        FileText = opn.getStringFromRawFile(getActivity());
+        opn.setFileText(FileText);
+        opn.openFile(R.raw.sample);
+        t = opn.getN();
+        System.out.println(t);
+        opn.Name(FileText);
+
+
         List<RemindDTO> data = new ArrayList<>();
-        data.add(new RemindDTO("Item 1"));
-        data.add(new RemindDTO("Item 2"));
-        data.add(new RemindDTO("Item 3"));
-        data.add(new RemindDTO("Item 4"));
-        data.add(new RemindDTO("Item 5"));
-        data.add(new RemindDTO("Item 6"));
+        String[] names = opn.getFinalname();
+            if(names.length==0){
+                System.out.println("names пуст!");
+            }
+            for (int i =0;i<t;i++) {
+                data.add( new RemindDTO( names[i].toString() ) );
+            }
+
+
 
 
         return data;
