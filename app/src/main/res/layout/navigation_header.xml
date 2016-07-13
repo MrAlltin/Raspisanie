@@ -4,5 +4,11 @@
               android:layout_height="192dp"
               android:background="@color/colorPrimaryDark"
               android:weightSum="1">
-
+          />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner12312"
+        android:entries="@array/group"
+        />
 </android.support.v4.widget.DrawerLayout>

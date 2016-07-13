@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import ru.mydomain.raspisanieusatu.adapter.TabsFragmentAdapter;
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String Theme;
     public int GroupID;
-
+    Spinner spinner;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppDefault);
         Theme = "Default";
-
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
 
