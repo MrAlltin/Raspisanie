@@ -9,10 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.mydomain.raspisanieusatu.fragment.AbstractTabFragment;
-import ru.mydomain.raspisanieusatu.fragment.BirthdaysFragment;
 import ru.mydomain.raspisanieusatu.fragment.HistoryFragment;
 import ru.mydomain.raspisanieusatu.fragment.IdeasFragment;
-import ru.mydomain.raspisanieusatu.fragment.TodoFragment;
 
 public class TabsFragmentAdapter extends FragmentPagerAdapter{
 
@@ -46,7 +44,5 @@ public class TabsFragmentAdapter extends FragmentPagerAdapter{
         tabs = new HashMap<>();
         tabs.put(0, HistoryFragment.getInstanse(context));
         tabs.put(1, IdeasFragment.getInstanse(context));
-        tabs.put(2, TodoFragment.getInstanse(context));
-        tabs.put(3, BirthdaysFragment.getInstanse(context));
     }
 }

@@ -32,6 +32,9 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Re
     public void onBindViewHolder(RemindViewHolder holder, int position) {
         RemindDTO item = data.get(position);
         holder.title.setText(item.getTitle());
+        holder.room.setText(item.getRooms());
+        holder.prepod.setText( item.getPrepods() );
+
     }
 
     @Override
@@ -43,12 +46,16 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Re
 
         CardView cardView;
         TextView title;
+        TextView room;
+        TextView prepod;
 
 
             public RemindViewHolder(View itemView) {
             super(itemView);
                 cardView = (CardView)  itemView.findViewById(R.id.cardView);
             title = (TextView) itemView.findViewById(R.id.title);
+            room = (TextView) itemView.findViewById(R.id.room);
+            prepod = (TextView) itemView.findViewById(R.id.prepod);
         }
     }
 }

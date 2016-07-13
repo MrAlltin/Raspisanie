@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.mydomain.raspisanieusatu.FilesOpen.Basic_Open;
 import ru.mydomain.raspisanieusatu.FilesOpen.Open_Files;
+import ru.mydomain.raspisanieusatu.MainActivity;
 import ru.mydomain.raspisanieusatu.R;
 import ru.mydomain.raspisanieusatu.adapter.RemindListAdapter;
 import ru.mydomain.raspisanieusatu.dto.RemindDTO;
@@ -53,10 +55,17 @@ public class HistoryFragment extends AbstractTabFragment{
     }
 
     private List<RemindDTO> creatMockRemindListData() {
+        String group;
+        int GroupID;
         Open_Files opn = new Open_Files();
-        FileText = opn.getStringFromRawFile(getActivity());
+        MainActivity ma = new MainActivity();
+        Basic_Open bo = new Basic_Open();
+        group = bo.getStringFromRawFile( getActivity() );
+        bo.setGroup( group );
+        GroupID = bo.getGroupID();
+        FileText = opn.getStringFromRawFile(getActivity(), GroupID);
         opn.setFileText(FileText);
-        opn.openFile(R.raw.sample);
+        opn.openFile(GroupID);
         t = opn.getN();
         System.out.println(t);
         opn.Name(FileText);
@@ -64,11 +73,13 @@ public class HistoryFragment extends AbstractTabFragment{
 
         List<RemindDTO> data = new ArrayList<>();
         String[] names = opn.getFinalname();
+        String[] rooms = opn.getRooms();
+        String[] prepods = opn.getPrepods();
             if(names.length==0){
                 System.out.println("names пуст!");
             }
             for (int i =0;i<t;i++) {
-                data.add( new RemindDTO( names[i].toString() ) );
+                data.add( new RemindDTO( names[i].toString(), rooms[i].toString(), prepods[i].toString()  ) );
             }
 
 

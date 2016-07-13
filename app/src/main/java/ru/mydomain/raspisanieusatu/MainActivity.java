@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int LAYOUT = R.layout.activity_main;
 
     private String Theme;
+    public int GroupID;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -32,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppDefault);
         Theme = "Default";
+
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
+
+
 
 
         initToolbar();
@@ -70,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initNavigatonView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.view_navigation_open,R.string.view_navigation_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
@@ -92,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void showNatificationTab(){
         viewPager.setCurrentItem(Constants.TAB_TWO);

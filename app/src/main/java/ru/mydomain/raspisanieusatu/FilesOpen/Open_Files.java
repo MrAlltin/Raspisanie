@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ru.mydomain.raspisanieusatu.R;
+import ru.mydomain.raspisanieusatu.MainActivity;
 
 public class Open_Files {
 
@@ -15,8 +15,10 @@ public class Open_Files {
 
 
 
-    String[] vizov;
+    String[] rooms;
+    String[] prepods;
     String FileText;
+
     String[] names;
     String[] finalname;
 
@@ -28,7 +30,7 @@ public class Open_Files {
         return FileText;
     }
 
-    public void openFile(int fileName) {
+    public void openFile(int fileid) {
         try {
             StringBuilder sb = new StringBuilder(FileText);
             StringBuilder sb1 = new StringBuilder(FileText);
@@ -37,8 +39,9 @@ public class Open_Files {
                 sb1.delete(0, sb1.indexOf(";")+1);
             }
 
-            vizov = new String[n];
+            rooms = new String[n];
             names = new String[n];
+            prepods = new String[n];
             finalname = new String[n];
             finalname = null;
 
@@ -58,19 +61,18 @@ public class Open_Files {
         sb = sb1;
         for (int i = 0; i < n; i++) {
             String uame = sb.toString();
+            String prepod;
 
             int index = uame.indexOf(",");
-            if (!sb.toString().isEmpty()) {
-                names[i] = sb.toString().substring( 0, index );
-            }
-
-            String tel = sb.toString();
-            int index2 = tel.indexOf(",") + 2;
-            int index3 = tel.indexOf(";");
-//            tel = sb.toString().substring(index2, index3);
-           //  = uame;
-            vizov[i] = tel;
-            System.out.println("Длина:" + sb.length());
+            names[i] = sb.toString().substring( 0, index );
+            sb.delete(0, index + 2);
+            String room = sb.toString();
+            int index2 = sb.indexOf(",");
+            rooms[i] = sb.toString().substring(0, index2);
+            sb.delete(0, index2 + 2);
+            int index3 = sb.indexOf(";");
+            prepods[i] = sb.toString().substring( 0,index3 );
+            System.out.println("Преподы:" + sb.toString().substring( 0,index3 ));
             sb.delete(0, index3 + 1);
         }
         sb = sb1;
@@ -78,18 +80,30 @@ public class Open_Files {
             finalname = names;
             System.out.println( "Теперь не пусто!" );
         }
+        if(rooms==null){
+            System.out.println("Rooms пусто!");
+        }
+        if(prepods==null){
+            System.out.println("Prepods пусто!");
+        }
         return finalname;
     }
 
+    public String[] getRooms() {
+        return rooms;
+    }
 
-    public String  getStringFromRawFile(Activity activity) {
+    public String[] getPrepods() {
+        return prepods;
+    }
+
+    public String  getStringFromRawFile(Activity activity, int ID ) {
         Resources r = activity.getResources();
-        InputStream is = r.openRawResource(R.raw.sample);
+        MainActivity ma = new MainActivity();
+        InputStream is = r.openRawResource(ID);
         String myText = null;
-        String edit = null;
         try {
             myText = convertStreamToString(is);
-            edit = myText;
         } catch (IOException e) {
             e.printStackTrace();
         }
